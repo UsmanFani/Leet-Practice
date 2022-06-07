@@ -4,7 +4,7 @@ import easy.SearchInsert
 import medium.`Ones&Zeroes`
 
 fun main(){
-    val nums = intArrayOf(5,4,-1,7,8)
-    val max = MaxSubArray().maxSubArray(nums)
+    val nums = intArrayOf(1)
+    val max = MaxSubArray().optimMaxSubArray(nums)
     println(max)
 }

@@ -29,4 +29,20 @@ class MaxSubArray {
         return max
     }
 
+    //Input: nums = [-2,1,-3,4,-1,2,1,-5,4]
+    fun optimMaxSubArray(nums: IntArray): Int {
+        var max = nums[0]
+        var sum = 0
+        for (i in 0..nums.lastIndex) {
+            sum += nums[i]
+            if (sum < nums[i]) sum = nums[i]
+
+            if (sum > max) {
+                max = sum
+            }
+
+        }
+        return max
+    }
+
 }
