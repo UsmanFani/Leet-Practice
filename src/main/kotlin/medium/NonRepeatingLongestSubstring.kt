@@ -25,11 +25,25 @@ class NonRepeatingLongestSubstring {
         for (i in 0..s.lastIndex) {
             for (j in start until i) {
                 if (s[i] == s[j]) {
-                    start = j+1
+                    start = j + 1
                     break
                 }
             }
             length = maxOf(length, (i - start) + 1)
+        }
+        return length
+    }
+
+    fun optimLengthOfLongestSubstring(s: String): Int {
+        var length = 0
+        var start = 0
+        var map = HashMap<Char, Int>()
+        for (i in s.indices) {
+            if (map.containsKey(s[i])) {
+                start = maxOf(start, map[s[i]]!!+1)
+            }
+            map[s[i]] = i
+            length = maxOf(length, i - start + 1)
         }
         return length
     }

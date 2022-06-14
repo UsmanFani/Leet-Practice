@@ -1,13 +1,12 @@
 import dp.KnapsackProblem
-import easy.MaxProfit
-import easy.MaxSubArray
-import easy.MergeSortedArray
+import easy.*
+import medium.BuySellStockII
 import medium.NonRepeatingLongestSubstring
 import medium.`Ones&Zeroes`
 import medium.TwoSum_II
 
 fun main(){
-    var s = ""
-    val str = NonRepeatingLongestSubstring().lengthOfLongestSubstring(s)
-    println(str)
+   val nums = intArrayOf(2,1,-1)
+   val arr = FindPivotIndex().findPivotIndex(nums)
+    println(arr)
 }
