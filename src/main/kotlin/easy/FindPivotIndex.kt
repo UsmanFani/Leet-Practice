@@ -26,22 +26,17 @@ class FindPivotIndex {
     //Left sum = 0 (no elements to the left of index 0)
     //Right sum = nums[1] + nums[2] = 1 + -1 = 0
     fun findPivotIndex(nums: IntArray): Int {
-        var mid = nums.size/2
         var leftSum = 0
         var rightSum = 0
-        var start = 0
-        var end = nums.lastIndex
-       while(start<mid||end>mid){
-           if(start<mid){
-               leftSum += nums[start]
-               start++
-           }
-           if(end>mid){
-               rightSum += nums[end]
-               end--
-           }
+
+       for(i in nums){
+          rightSum += i
        }
-        if(leftSum==rightSum) return mid
-        else return -1
+        for(i in nums.indices){
+            if(i>0) leftSum += nums[i-1]
+            if(i<=nums.lastIndex) rightSum -= nums[i]
+            if(leftSum==rightSum) return i
+        }
+        return -1
     }
 }
