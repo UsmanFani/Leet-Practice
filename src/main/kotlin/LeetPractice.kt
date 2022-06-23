@@ -1,12 +1,9 @@
 import dp.KnapsackProblem
 import easy.*
-import medium.BuySellStockII
-import medium.NonRepeatingLongestSubstring
-import medium.`Ones&Zeroes`
-import medium.TwoSum_II
+import medium.*
 
 fun main() {
-    val nums = intArrayOf(-4,-1,0,3,10)
-    val arr = SortedSquares().sortedSquares(nums)
-    println(arr.asList())
+    val arr = arrayOf(intArrayOf(2,3), intArrayOf(5, 5), intArrayOf(2,2), intArrayOf(3,4), intArrayOf(3,4))
+    val merge = MergeIntervals().mergeIntervals(arr)
+    merge.forEach { println(it.asList()) }
 }
