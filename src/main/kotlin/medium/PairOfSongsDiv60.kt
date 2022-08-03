@@ -22,4 +22,47 @@ class PairOfSongsDiv60 {
         }
         return pairSum
     }
+
+    fun optimNumPairsDivisibleBy60(time: IntArray): Int {
+        var pairSum = 0
+        val set = mutableSetOf<Int>()
+        var zeros = 0
+        for (i in time.indices) {
+            time[i] = time[i] % 60
+            if (time[i] == 0) {
+                if (zeros > 0) pairSum += zeros
+                zeros++
+            } else {
+                if (set.contains(60 - time[i])) pairSum++
+                set.add(time[i])
+            }
+        }
+        return pairSum
+    }
+
+    fun optNumPairsDivisibleBy60(time: IntArray): Int {
+        var pairSum:Long = 0
+        var map = mutableMapOf<Int, Long>()
+        for (i in time.indices) {
+            time[i] = time[i] % 60
+            if (map.contains(time[i])) map[time[i]] = map[time[i]]!! + 1
+            else map[time[i]] = 1
+        }
+        map.forEach { key, value ->
+            if (key == 0) {
+                pairSum += (value * (value - 1)) / 2
+            } else if (key == 30) {
+                pairSum += (value * (value - 1)) / 2
+            } else {
+                var sum = 60 - key
+                if (map.containsKey(sum)) {
+                    pairSum += map[sum]!! * value
+                    map[sum] = 0
+                    map[key] = 0
+                }
+            }
+        }
+
+        return pairSum.toInt()
+    }
 }

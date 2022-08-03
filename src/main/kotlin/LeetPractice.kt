@@ -3,7 +3,7 @@ import easy.*
 import medium.*
 
 fun main() {
-    var time = intArrayOf(60,60,60)
-    var pair = PairOfSongsDiv60().numPairsDivisibleBy60(time)
-    println(pair)
+   var nums = intArrayOf(3,1,3,4,2)
+    var duplicate = FindDuplicate().optimFindDuplicate(nums)
+    println(duplicate)
 }
