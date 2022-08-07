@@ -11,7 +11,22 @@ class JumpGameII {
     //Output: 2
     fun jump(nums: IntArray): Int {
         var minJump = 0
-
+        var max = nums[0]
+        var left = 0
+        var right: Int
+        if (nums.size == 1) return 0
+        if (nums.size == 2 || max >= nums.lastIndex) return 1
+        while (max < nums.lastIndex) {
+            right = max
+            var temp = 0
+            for (i in left..right) {
+                max = maxOf(max, i + nums[i])
+                if(max>right) temp = i
+            }
+            left = temp
+            minJump++
+            if (max>=nums.lastIndex)minJump++
+        }
         return minJump
     }
 }
