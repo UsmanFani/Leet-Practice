@@ -3,7 +3,10 @@ import easy.*
 import medium.*
 
 fun main() {
-    var nums = intArrayOf(3,1,1,1,1)
-    var jumpGame = JumpGameII().jump(nums)
-    println(jumpGame)
+    var h = 1000000000
+    var w = 1000000000
+    var horizontalCuts = intArrayOf(2)
+    var verticalCuts = intArrayOf(2)
+    var area = MaxAreaOfCake().maxArea(h, w, horizontalCuts, verticalCuts)
+    println(area)
 }

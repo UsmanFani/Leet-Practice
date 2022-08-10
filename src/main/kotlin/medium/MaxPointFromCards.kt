@@ -15,8 +15,24 @@ class MaxPointFromCards {
     //Input: cardPoints = [9,7,7,9,7,7,9], k = 7
     //Output: 55
     //Explanation: You have to take all the cards. Your score is the sum of points of all cards.
-    fun maxScore(cardPoints:IntArray,k:Int):Int{
+    fun maxScore(cardPoints: IntArray, k: Int): Int {
         var score = 0
+        for (i in 0 until k) {
+            score += cardPoints[i]
+        }
+        if (cardPoints.size == k) return score
+
+        var first = cardPoints.lastIndex
+        var last = k - 1
+        var sum = score
+        for (i in 0 until k) {
+            val temp = sum - cardPoints[last] + cardPoints[first]
+            sum = temp
+            score = maxOf(score, temp)
+            if (last == 0) last = cardPoints.lastIndex
+            else last--
+            first--
+        }
         return score
     }
 }
