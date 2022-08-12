@@ -3,10 +3,8 @@ import easy.*
 import medium.*
 
 fun main() {
-    var h = 1000000000
-    var w = 1000000000
-    var horizontalCuts = intArrayOf(2)
-    var verticalCuts = intArrayOf(2)
-    var area = MaxAreaOfCake().maxArea(h, w, horizontalCuts, verticalCuts)
-    println(area)
+    var nums = intArrayOf(6,2,9,3,9,6,7,7,6,4)
+    var k = 3
+    var find = FindPairs().findPairs(nums, k)
+    println(find)
 }
