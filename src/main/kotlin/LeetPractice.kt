@@ -3,8 +3,7 @@ import easy.*
 import medium.*
 
 fun main() {
-    var nums = intArrayOf(6,2,9,3,9,6,7,7,6,4)
-    var k = 3
-    var find = FindPairs().findPairs(nums, k)
-    println(find)
+    var transactions = arrayOf("alice,20,800,mtv","alice,50,100,beijing")
+    var invalid = InvalidTransactions().invalidTransactions(transactions)
+    println(invalid)
 }

@@ -21,45 +21,40 @@ class FindPairs {
         nums.sort()
         var left = 0
         var right = 1
-        var bool = true
         while (right <= nums.lastIndex) {
+            val diff = nums[right] - nums[left]
             if (k == 0) {
-                if (nums[left] == nums[right]) {
-                    if (bool) {
-                        pairs++
-                        bool = false
-                    }
+                if (left > 0 && nums[left] == nums[left - 1] && nums[right] == nums[right - 1]) {
+                    left++
+                    right++
+                } else if (diff == k) {
+                    pairs++
+                    left++
+                    right++
+                } else if (diff > k) {
                     left++
                     right++
                 } else {
-                    bool = true
                     left++
                     right++
                 }
             } else {
-                if (nums[left] == nums[right]) {
-                    left++
-                    right++
-                    continue
+                if (left > 0) {
+                    if (nums[left] == nums[left - 1] && nums[right] == nums[right - 1]) {
+                        left++
+                        right++
+                        continue
+                    }
                 }
-                var diff = nums[right] - nums[left]
                 if (diff == k) {
                     pairs++
-                    right++
                     left++
-                    continue
-                }
-                if (nums[left] == nums[right]) {
                     right++
-                    left++
-                }
-                if (diff < k) {
+                } else if (diff < k) {
                     right++
-                }
-                if (diff > k) {
+                } else {
                     left++
                 }
-
             }
         }
         return pairs
