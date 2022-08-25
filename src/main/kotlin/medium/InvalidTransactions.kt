@@ -15,40 +15,33 @@ class InvalidTransactions {
     //Example 3:
     //Input: transactions = ["alice,20,800,mtv","bob,50,1200,mtv"]
     //Output: ["bob,50,1200,mtv"]
-    fun invalidTransactions(transactions: Array<String>): List<String> {
-        var invalidList = mutableListOf<String>()
-        var map = mutableMapOf<String, List<List<String>>>()
-        var name = ""
-        var time: Int
-        var amount: Int
-        var city: String
-        for (i in transactions.indices) {
-            var it = transactions[i]
-            var list = it.split(',')
-            name = list[0]
-            time = list[1].toInt()
-            amount = list[2].toInt()
-            city = list[3]
+    fun invalidTransaction(transactions: Array<String>):List<String>{
+        var list = mutableListOf<String>()
+        for (i in 0 .. transactions.lastIndex){
+            var splitList = transactions[i].split(',')
+            var name = splitList[0]
+            var time = splitList[1].toInt()
+            var amount = splitList[2].toInt()
+            var city = splitList[3]
 
-            if (amount > 1000) invalidList.add(it)
-            else if (map.containsKey(name)) {
-                var mapTime = map[name]!![map[name]!!.lastIndex]
-                if (abs(time - mapTime[1].toInt()) <= 60 && city != mapTime[3]) {
-                    map[name]!!.forEach{
-                        invalidList.add(it[0]+","+it[1]+","+it[2]+","+it[3])
-                    }
-                    invalidList.add(it)
-                    map[name] = listOf(listOf(it))
-                }else{
-                    var mapList = map[name]!!.toMutableList()
-                    mapList.add(listOf(name,time.toString(),amount.toString(),city))
-                    map[name] = mapList
-
+            if(amount>1000){
+                list.add(transactions[i])
+                continue
+            }
+            for(j in 0..transactions.lastIndex){
+                if(j==i)continue
+                var split = transactions[j].split(',')
+                var tempName = split[0]
+                var tempTime = split[1].toInt()
+                var tempAmount = split[2].toInt()
+                var tempCity = split[3]
+                if (name!=tempName)continue
+                if(Math.abs(time-tempTime)<=60&&city!=tempCity){
+                    list.add(transactions[i])
+                    break
                 }
-            } else {
-                map.put(name, listOf(listOf(name,time.toString(),amount.toString(),city)))
             }
         }
-        return invalidList
+        return list
     }
 }
