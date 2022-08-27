@@ -3,7 +3,8 @@ import easy.*
 import medium.*
 
 fun main() {
-    var transactions = arrayOf("alice,20,800,mtv","alice,50,100,mtv","alice,51,100,frankfurt")
-    var invalid = InvalidTransactions().invalidTransaction(transactions)
-    println(invalid)
+    var nums = intArrayOf(4,5,0,-2,-3,1)
+    var k = 5
+    var can = SubArrayDivByK().subarraysDivByK(nums, k)
+    println(can)
 }
