@@ -12,13 +12,30 @@ class SubArrayDivByK {
     //Output: 0
     fun subarraysDivByK(nums: IntArray, k: Int): Int {
         var count = 0
-        for(i in 0 .. nums.lastIndex){
-            if(nums[i]%k==0) count++
+        for (i in 0..nums.lastIndex) {
+            if (nums[i] % k == 0) count++
             var sum = nums[i]
-            for (j in i+1..nums.lastIndex){
+            for (j in i + 1..nums.lastIndex) {
                 sum += nums[j]
-                if (sum%k==0)count++
+                if (sum % k == 0) count++
             }
+        }
+        return count
+    }
+
+    fun optimSubArraysDivByK(nums: IntArray, k: Int): Int {
+        var count = 0
+        val map = mutableMapOf<Int, Int>()
+        map[0] = 1
+        var sum = 0
+        for (i in nums.indices) {
+            sum += nums[i]
+            var rem = sum % k
+            if (rem < 0) rem += k
+            if (map.containsKey(rem)) {
+                count += map[rem]!!
+                map[rem] = map[rem]!! + 1
+            } else map[rem] = 1
         }
         return count
     }
