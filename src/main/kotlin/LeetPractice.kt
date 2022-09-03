@@ -7,6 +7,6 @@ import medium.*
 
 fun main() {
     var nums = intArrayOf(2,0)
-    var num = LargestRectangleInHistogram().largestRectangleArea(nums)
+    var num = LargestRectangleInHistogram().optimLargestResctangleArea(nums)
     println(num)
 }
