@@ -10,8 +10,9 @@ class NumberWithSameConsecutiveDiff {
     //Input: n = 2, k = 1
     //Output: [10,12,21,23,32,34,43,45,54,56,65,67,76,78,87,89,98]
     fun numsSameConsecDiff(n:Int,k:Int):IntArray{
-        var result = intArrayOf()
+        var result = mutableListOf<Int>()
 
-        return result
+        var arr = 10
+        return result.toIntArray()
     }
 }
