@@ -1,11 +1,11 @@
 import Arrays.medium.BagOfTokens
+import dp.Easy.ClimbingStairs
 import dp.Easy.MaximumSubarray
 
 fun main() {
 
-   var tokens = intArrayOf(100,200,300,400,500)
-    var power = 200
-    var max = BagOfTokens().bagOfTokensScore(tokens, power)
+   var nums = 5
+    var max = ClimbingStairs().dpClimbStairs(nums)
     println(max)
 
 }
