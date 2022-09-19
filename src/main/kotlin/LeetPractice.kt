@@ -3,7 +3,7 @@ import dp.medium.DecodeWays
 
 fun main() {
 
-    var s ="06"
+    var s ="10"
     var decode = DecodeWays().numDecodings(s)
     println(decode)
 

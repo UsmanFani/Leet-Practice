@@ -16,11 +16,14 @@ class DecodeWays {
     //Output: 0
     //Explanation: "06" cannot be mapped to "F" because of the leading zero ("6" is different from "06").
     lateinit var dp: Array<IntArray>
+    lateinit var dpPos: IntArray
     fun numDecodings(s: String): Int {
-        dp = Array(s.length + 1) { IntArray(s.length + 1) { -1 } }
-        val d1 = decode(s, 0, 0)
-        val d2 = decode(s, 0, 1)
-        return d1 + d2
+//        dp = Array(s.length + 1) { IntArray(s.length + 1) { -1 } }
+//        val d1 = decode(s, 0, 0)
+//        val d2 = decode(s, 0, 1)
+//        return d1 + d2
+        dpPos = IntArray(s.length + 1) { -1 }
+        return dpDecode(0, s)
     }
 
     private fun decode(s: String, firstIndex: Int, secondIndex: Int): Int {
@@ -50,6 +53,21 @@ class DecodeWays {
             dp[firstIndex][secondIndex] = b1 + b2
             return dp[firstIndex][secondIndex]
         }
+    }
+
+    //DP TOP-DOWN Approach
+    //time: O(n) space: O(n)
+    fun dpDecode(pos: Int, s: String): Int {
+        if (dpPos[pos] != -1) return dpPos[pos]
+        if (pos >= s.length) return 1
+        if (s[pos] == '0') return 0
+        if (pos == s.length - 1) return 1
+        if (s[pos] == '1' || s[pos] == '2' && s[pos + 1] in '0'..'6') {
+            dpPos[pos] = dpDecode(pos + 1, s) + dpDecode(pos + 2, s)
+            return dpPos[pos]
+        }
+        dpPos[pos] = dpDecode(pos + 1, s)
+        return dpPos[pos]
     }
 
 }
