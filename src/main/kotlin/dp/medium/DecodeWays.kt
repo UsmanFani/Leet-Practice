@@ -15,27 +15,41 @@ class DecodeWays {
     //Input: s = "06"
     //Output: 0
     //Explanation: "06" cannot be mapped to "F" because of the leading zero ("6" is different from "06").
-    private var noOfWays = 0
-    var map = mutableMapOf<Int, Int>()
+    lateinit var dp: Array<IntArray>
     fun numDecodings(s: String): Int {
-        return decode(s, 0, 0)
+        dp = Array(s.length + 1) { IntArray(s.length + 1) { -1 } }
+        val d1 = decode(s, 0, 0)
+        val d2 = decode(s, 0, 1)
+        return d1 + d2
     }
 
     private fun decode(s: String, firstIndex: Int, secondIndex: Int): Int {
         if (firstIndex == secondIndex) {
-            if (map.containsKey(firstIndex)) return map[firstIndex]!!
+            if (dp[firstIndex][secondIndex] != -1) return dp[firstIndex][secondIndex]
             var ones = s[firstIndex].code - 48
             if (ones == 0) return 0
             if (firstIndex == s.lastIndex) return 1
         } else {
-            if (map.containsKey((firstIndex * 10) + secondIndex)) return map[(firstIndex * 10) + secondIndex]!!
-            var tens = (s[firstIndex].code - 48) * 10 + (s[secondIndex].code - 48)
+            if (dp[firstIndex][secondIndex] != -1) return dp[firstIndex][secondIndex]
+            if (secondIndex > s.lastIndex) return 0
+            if (s[firstIndex].code - 48 == 0) return 0
+            val tens = (s[firstIndex].code - 48) * 10 + (s[secondIndex].code - 48)
             if (tens > 26) return 0
             if (secondIndex == s.lastIndex) return 1
         }
-        map[firstIndex + 1] = decode(s, firstIndex + 1, firstIndex + 1)
-        map[(firstIndex + 1) * 10 + (secondIndex + 1)] = decode(s, firstIndex + 1, secondIndex + 1)
-        return map[firstIndex + 1]!! + map[(firstIndex + 1) * 10 + (secondIndex + 1)]!!
+        if (firstIndex == secondIndex) {
+            if (dp[firstIndex][secondIndex] != -1) return dp[firstIndex][secondIndex]
+            val a1 = decode(s, firstIndex + 1, firstIndex + 1)
+            val a2 = decode(s, firstIndex + 1, firstIndex + 2)
+            dp[firstIndex][secondIndex] = a1 + a2
+            return dp[firstIndex][secondIndex]
+        } else {
+            if (dp[firstIndex][secondIndex] != -1) return dp[firstIndex][secondIndex]
+            val b1 = decode(s, secondIndex + 1, secondIndex + 1)
+            val b2 = decode(s, secondIndex + 1, secondIndex + 2)
+            dp[firstIndex][secondIndex] = b1 + b2
+            return dp[firstIndex][secondIndex]
+        }
     }
 
 }
