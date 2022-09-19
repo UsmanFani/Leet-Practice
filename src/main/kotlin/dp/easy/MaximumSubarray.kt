@@ -1,4 +1,4 @@
-package dp.Easy
+package dp.easy
 
 class MaximumSubarray {
     //Example 1:

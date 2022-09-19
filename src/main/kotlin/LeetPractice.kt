@@ -1,13 +1,11 @@
-import Arrays.medium.BagOfTokens
-import dp.Easy.ClimbingStairs
-import dp.Easy.DivisiorGame
-import dp.Easy.MaximumSubarray
+import dp.easy.CountingBits
+import dp.medium.DecodeWays
 
 fun main() {
 
-   var n = 4
-    var game = DivisiorGame().divisorGame(n)
-    println(game)
+    var s ="226"
+    var decode = DecodeWays().numDecodings(s)
+    println(decode)
 
 }
 

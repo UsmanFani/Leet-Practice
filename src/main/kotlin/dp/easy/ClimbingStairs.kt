@@ -1,4 +1,4 @@
-package dp.Easy
+package dp.easy
 
 class ClimbingStairs {
     //Example 1:
