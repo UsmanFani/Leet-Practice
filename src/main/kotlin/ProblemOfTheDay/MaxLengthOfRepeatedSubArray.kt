@@ -34,4 +34,20 @@ class MaxLengthOfRepeatedSubArray {
         }
         return maxSub
     }
+
+    //Optimize using 2D-Array
+    //Time:O(mn) Space:O(mn)
+    fun optimFindLength(nums1: IntArray, nums2: IntArray): Int {
+        val arr = Array(nums1.size+1) { IntArray(nums2.size+1) }
+        var max = 0
+        for (i in nums1.indices) {
+            for (j in nums2.indices) {
+                if (nums1[i] == nums2[j]) {
+                    arr[i + 1][j + 1] = 1 + arr[i][j]
+                    max = maxOf(max, arr[i+1][j+1])
+                }
+            }
+        }
+        return max
+    }
 }
