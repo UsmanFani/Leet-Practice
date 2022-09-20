@@ -22,8 +22,8 @@ class DecodeWays {
 //        val d1 = decode(s, 0, 0)
 //        val d2 = decode(s, 0, 1)
 //        return d1 + d2
-        dpPos = IntArray(s.length + 1) { -1 }
-        return dpDecode(0, s)
+        // dpPos = IntArray(s.length + 1) { -1 }
+        return dpDecodeWays(s)
     }
 
     private fun decode(s: String, firstIndex: Int, secondIndex: Int): Int {
@@ -68,6 +68,33 @@ class DecodeWays {
         }
         dpPos[pos] = dpDecode(pos + 1, s)
         return dpPos[pos]
+    }
+
+    //DP Iterative Way
+    //Time:O(n)
+    //Space:O(1)
+    fun dpDecodeWays(s: String): Int {
+        if (s[0] == '0') return 0
+        var dp1 = 1
+        var dp2 = 1
+        for (i in 1..s.lastIndex) {
+            if (s[i] == '0' && s[i - 1] == '0') return 0
+            if (s[i - 1] > '2' && s[i] == '0') return 0
+            if (s[i] == '0') {
+                dp2 = dp1
+            } else if (s[i - 1] == '0') {
+                val temp = dp2
+                dp2 = dp1
+                dp1 = temp
+            } else if (s[i - 1] == '2' && s[i] > '6' || s[i - 1] > '2') {
+                dp1 = dp2
+            } else {
+                val temp = dp2
+                dp2 += dp1
+                dp1 = temp
+            }
+        }
+        return dp2
     }
 
 }
