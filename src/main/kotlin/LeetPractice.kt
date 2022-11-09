@@ -1,11 +1,12 @@
 import contest.biweekly.MinimizeArrayValue
+import dp.hard.TrappingRainWater
 import dp.medium.*
 
 fun main() {
 
 
-    var nums = intArrayOf(20, 1, 15, 3, 10, 5, 8)
-    var len = LongestArithmeticSubsequence().tabLAS(nums)
+    var nums = intArrayOf(4, 2, 0, 3, 2, 5)
+    var len = TrappingRainWater().optimTrap(nums)
     println(len)
 }
 
