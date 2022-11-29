@@ -1,12 +1,15 @@
+import Strings.AddStrings
 import contest.biweekly.MinimizeArrayValue
 import dp.hard.TrappingRainWater
+import dp.hard.WordBreakII
 import dp.medium.*
 
 fun main() {
 
 
-    var nums = intArrayOf(4, 2, 0, 3, 2, 5)
-    var len = TrappingRainWater().optimTrap(nums)
-    println(len)
+    var num1 = "11"
+    var num2 = "11"
+    var sum = AddStrings().addStrings(num1, num2)
+    println(sum)
 }
 
