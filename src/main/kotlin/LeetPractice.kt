@@ -10,7 +10,7 @@ import dp.medium.PalindromicSubstring
 fun main() {
 
 
-    var str = arrayOf("")
+    var str = arrayOf("asd","ads","ddd")
     val anagram = GroupAnagram()
    val res =  anagram.groupAnagram(str)
     println(res)
