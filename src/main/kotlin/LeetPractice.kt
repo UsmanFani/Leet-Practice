@@ -8,8 +8,8 @@ import dp.medium.PalindromicSubstring
 fun main() {
 
 
-    val rom = IntToRoman()
-    val res = rom.intToRoman(1994)
+   val rev = ReverseWords()
+    val res = rev.reverseWords("EPY2giL")
     println(res)
 }
 
