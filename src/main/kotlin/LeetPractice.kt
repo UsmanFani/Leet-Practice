@@ -8,8 +8,8 @@ import dp.medium.PalindromicSubstring
 fun main() {
 
 
-   val rev = ReverseWords()
-    val res = rev.reverseWords("EPY2giL")
+    val rev = SimplifyPath()
+    val res = rev.simPath("/..")
     println(res)
 }
 
