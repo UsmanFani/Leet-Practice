@@ -8,8 +8,8 @@ import dp.medium.PalindromicSubstring
 fun main() {
 
 
-    val rev = SimplifyPath()
-    val res = rev.simPath("/..")
+    val rev = BasicCalculatorII()
+    val res = rev.basicCal(" 3")
     println(res)
 }
 

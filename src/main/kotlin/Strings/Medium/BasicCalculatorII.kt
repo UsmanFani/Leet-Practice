@@ -13,45 +13,56 @@ class BasicCalculatorII {
     //Example 3:
     //Input: s = " 3+5 / 2 "
     //Output: 5
-    fun calculate(s: String): Int {
-        var st = ""
+
+
+    //"3"
+    //"3+2*5/2"
+    //"3  +2 * 5/ 2"
+
+    fun basicCal(s: String): Int {
+        val str = StringBuilder()
+
         s.forEach {
-            if (it != ' ') st += it
+            if (it != ' ') str.append(it)
         }
+
         val list = mutableListOf<String>()
-        var str = ""
-        var index = 0
-        for (i in 0..st.lastIndex) {
-            if (i + index >= st.lastIndex) break
-            if (st[i + index] == '*' || st[i + index] == '/' || st[i + index] == '+' || st[i + index] == '-') {
-                if (st[i + index] == '+' || st[i + index] == '-') {
-                    list.add(str)
-                    list.add(st[i + index].toString())
-                    str = ""
-                } else {
-                    list.add(str)
-                    val sym = st[i + index]
-                    var strForMultDiv = ""
-                    index++
-                    while (i + index <= st.lastIndex && (st[i + index] - '0') in 0..9) {
-                        strForMultDiv += st[i + index]
-                        index++
-                    }
-                    if (strForMultDiv.isNotEmpty()) {
-                        if (sym == '*') {
-                            list[list.lastIndex] = (list.last().toInt() * strForMultDiv.toInt()).toString()
-                        } else list[list.lastIndex] = (list.last().toInt() / strForMultDiv.toInt()).toString()
-                    }
+        var flag = false
+        var strToCalculate = ""
+        var sign = ""
+        str.forEach {
+            if (it == '+' || it == '-' || it == '*' || it == '/') {
+                if (sign.isNotEmpty() && strToCalculate.isNotEmpty() && flag) {
+                    if (sign == "/") list[list.lastIndex] = (list.last().toInt() / strToCalculate.toInt()).toString()
+                    else list[list.lastIndex] = (list.last().toInt() * strToCalculate.toInt()).toString()
+                    strToCalculate = ""
+                    flag = false
+                    sign = ""
                 }
+                if (it == '+' || it == '-') list.add(it.toString())
+                else {
+                    sign = it.toString()
+                    flag = true
+                }
+            } else {
+                if (flag) strToCalculate += it
+                else if (list.isNotEmpty() && (list.last() == "+" || list.last() == "-")) list.add(it.toString())
+                else if (list.isEmpty()) list.add(it.toString()) else list[list.lastIndex] = list.last() + it
             }
-            if (i + index > st.lastIndex) break
-            if (str == "+" || str == "-") str = ""
-            str += st[i + index]
         }
-        if (list.isNotEmpty()) {
-            for (i in 2..list.lastIndex step 2) {
-                list[i] = if (list[i - 1] == "+") (list[i - 2].toInt() + list[i].toInt()).toString()
-                else (list[i - 2].toInt() - list[i].toInt()).toString()
+
+        if (strToCalculate.isNotEmpty() && sign.isNotEmpty()) {
+            if (sign == "/") list[list.lastIndex] = (list.last().toInt() / strToCalculate.toInt()).toString()
+            else list[list.lastIndex] = (list.last().toInt() * strToCalculate.toInt()).toString()
+            strToCalculate = ""
+            sign = ""
+        }
+
+        list.forEachIndexed { index, s ->
+            if (s == "+") {
+                list[index + 1] = (list[index - 1].toInt() + list[index + 1].toInt()).toString()
+            } else if (s == "-") {
+                list[index + 1] = (list[index - 1].toInt() - list[index + 1].toInt()).toString()
             }
         }
         return list.last().toInt()
