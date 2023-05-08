@@ -20,17 +20,12 @@ class BasicCalculatorII {
     //"3  +2 * 5/ 2"
 
     fun basicCal(s: String): Int {
-        val str = StringBuilder()
-
-        s.forEach {
-            if (it != ' ') str.append(it)
-        }
-
         val list = mutableListOf<String>()
         var flag = false
         var strToCalculate = ""
         var sign = ""
-        str.forEach {
+        for (it in s) {
+            if (it == ' ') continue
             if (it == '+' || it == '-' || it == '*' || it == '/') {
                 if (sign.isNotEmpty() && strToCalculate.isNotEmpty() && flag) {
                     if (sign == "/") list[list.lastIndex] = (list.last().toInt() / strToCalculate.toInt()).toString()
@@ -54,17 +49,45 @@ class BasicCalculatorII {
         if (strToCalculate.isNotEmpty() && sign.isNotEmpty()) {
             if (sign == "/") list[list.lastIndex] = (list.last().toInt() / strToCalculate.toInt()).toString()
             else list[list.lastIndex] = (list.last().toInt() * strToCalculate.toInt()).toString()
-            strToCalculate = ""
-            sign = ""
         }
 
-        list.forEachIndexed { index, s ->
-            if (s == "+") {
+        list.forEachIndexed { index, str ->
+            if (str == "+") {
                 list[index + 1] = (list[index - 1].toInt() + list[index + 1].toInt()).toString()
-            } else if (s == "-") {
+            } else if (str == "-") {
                 list[index + 1] = (list[index - 1].toInt() - list[index + 1].toInt()).toString()
             }
         }
         return list.last().toInt()
+    }
+
+    fun basicCalc(s: String): Int {
+        var numSum = 0
+        var numProd = 0
+        var sign = '+'
+        var num = 0
+        s.forEachIndexed { index, c ->
+            val isDigit = c.isDigit()
+            if (isDigit) num = num * 10 + (c - '0')
+            if (!isDigit && c != ' ' || index == s.lastIndex) {
+                when (sign) {
+                    '+' -> {
+                        numSum += numProd; numProd = num
+                    }
+                    '-' -> {
+                        numSum += numProd; numProd = -num
+                    }
+                    '*' -> {
+                        numProd *= num
+                    }
+                    '/' -> {
+                        numProd /= num
+                    }
+                }
+                sign = c
+                num = 0
+            }
+        }
+        return numSum + numProd
     }
 }

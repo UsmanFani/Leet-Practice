@@ -9,7 +9,7 @@ fun main() {
 
 
     val rev = BasicCalculatorII()
-    val res = rev.basicCal(" 3")
+    val res = rev.basicCalc(" 3+3*2  +2")
     println(res)
 }
 
