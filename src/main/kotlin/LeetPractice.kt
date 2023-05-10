@@ -1,15 +1,14 @@
-import ProblemOfTheDay.MinimumAverageDifference
-import Strings.Easy.AddStrings
-import Strings.Easy.RomanToInt
-import Strings.Easy.ValidPalindrome2
+import Strings.Hard.TextJustification
 import Strings.Medium.*
-import dp.medium.PalindromicSubstring
 
 fun main() {
 
 
-    val rev = BasicCalculatorII()
-    val res = rev.basicCalc(" 3+3*2  +2")
+    val rev = TextJustification()
+    val str = arrayOf(
+        "What", "must", "be", "acknowledgment", "shall", "be"
+    )
+    val res = rev.fullJustify(str, 16)
     println(res)
 }
 
