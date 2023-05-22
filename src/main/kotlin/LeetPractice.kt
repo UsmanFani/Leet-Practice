@@ -1,12 +1,13 @@
 import Maths.Easy.AddBinary
 import Maths.Medium.ReverseInteger
+import Maths.Medium.StringToInt_Atoi
 import Strings.Hard.TextJustification
 import Strings.Medium.*
 import kotlin.math.pow
 
 fun main() {
 
-    val res = AddBinary().addBinary("10","11")
+    val res = StringToInt_Atoi().myAtoi("+-12")
     println(res)
 }
 
