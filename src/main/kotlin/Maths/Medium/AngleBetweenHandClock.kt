@@ -6,7 +6,6 @@ class AngleBetweenHandClock {
         val h = if (hour == 12) 0.0 else hour.toDouble()
         val hInMin: Double = h * 5
         var res = 0.0
-
         if (hInMin < minutes) {
             val diffMin: Double = minutes - hInMin
             val diffInDeg: Double = diffMin * 6
