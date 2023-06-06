@@ -6,11 +6,7 @@ import kotlin.math.pow
 
 fun main() {
 
-    val p1 = intArrayOf(0,0)
-    val p2 = intArrayOf(1,1)
-    val p3 = intArrayOf(0,0)
-    val p4 = intArrayOf(1,1)
-    val res = ValidSquare().validSquare(p1,p2, p3, p4)
+    val res = KthFactor().kthFactor(25,5)
     println(res)
 }
 
