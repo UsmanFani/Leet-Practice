@@ -2,6 +2,8 @@ package greedy.medium
 
 //@author Usman Fani
 
+//Leetcode-621
+
 //Example 1:
 //Input: tasks = ["A","A","A","B","B","B"], n = 2
 //Output: 8
