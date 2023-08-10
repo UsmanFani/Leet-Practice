@@ -4,14 +4,13 @@ import Maths.Medium.*
 import Strings.Hard.NumberToWords
 import Strings.Hard.TextJustification
 import Strings.Medium.*
-import greedy.medium.GasStation
-import greedy.medium.TaskScheduler
+import greedy.medium.*
 import kotlin.math.pow
 
 fun main() {
 
-    val cal = GasStation()
-    val tasks = cal.optimCanCompleteCircuit(intArrayOf(6,1,4,3,5), intArrayOf(3,8,2,4,2))
-    println(tasks)
+    val cal = RemoveKDigits()
+    val arr = cal.removeKDigits("12345011",5)
+    println(arr)
 }
 

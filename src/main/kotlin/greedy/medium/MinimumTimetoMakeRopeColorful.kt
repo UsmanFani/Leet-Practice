@@ -1,4 +1,4 @@
-package ProblemOfTheDay
+package greedy.medium
 
 //@author Usman Fani
 class MinimumTimetoMakeRopeColorful {
