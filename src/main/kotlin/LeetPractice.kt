@@ -9,8 +9,8 @@ import kotlin.math.pow
 
 fun main() {
 
-    val cal = RemoveKDigits()
-    val arr = cal.removeKDigits("12345011",5)
-    println(arr)
+    val cal = RestoreArrayFromPairs()
+    val arr = cal.restoreArray(arrayOf(intArrayOf(2,1), intArrayOf(3,4), intArrayOf(3,2)))
+    println(arr.toList())
 }
 
