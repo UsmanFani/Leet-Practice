@@ -16,24 +16,59 @@ package greedy.hard
 //The third child gets 1 candy because it satisfies the above two conditions.
 class Candy {
     fun candy(ratings: IntArray): Int {
+        if(ratings.size == 1) return 1
         var sum = 0
-        var counter = 0
-        for (i in 0..ratings.lastIndex) {
-            if (i != 0 && ratings[i] <= ratings[i - 1]) {
-                if (i < ratings.lastIndex && ratings[i] > ratings[i + 1])
-                    if (i >= 2 && i < ratings.lastIndex && ratings[i] > ratings[i + 1] && ratings[i - 1] > ratings[i - 2]) counter =
-                        0
-                    else counter = 0
+        var counterArr = IntArray(ratings.size){1}
+        var flag = true
+        while(flag){
+            flag = false
+            for (i in 0..ratings.lastIndex) {
+                if(i==0){
+                    if(ratings[i]>ratings[i+1]&&counterArr[i]<=counterArr[i+1]){
+                        counterArr[i] = counterArr[i]+1
+                        flag = true
+                    }
+                }
+                else if(i==ratings.lastIndex){
+                    if(ratings[i]>ratings[i-1]&&counterArr[i]<=counterArr[i-1]){
+                        counterArr[i] = counterArr[i]+1
+                        flag = true
+                    }
+                }
+                else if((ratings[i]>ratings[i-1]&&counterArr[i]<=counterArr[i-1])||
+                    (ratings[i]>ratings[i+1]&&counterArr[i]<=counterArr[i+1]))
+                {
+                    counterArr[i] = counterArr[i]+1
+                    flag = true
+                }
             }
- 
-            if (i != ratings.lastIndex && ratings[i] > ratings[i + 1]) {
-                counter++
-            } else if (i != 0 && ratings[i] > ratings[i - 1]) counter++
-            else counter = 0
-            sum += counter
-            if (i != ratings.lastIndex && ratings[i] == ratings[i + 1]) counter = 0
         }
-        sum += ratings.size
+        for(i in counterArr){
+            sum += i
+        }
+        return sum
+    }
+
+    fun optimCandy(ratings: IntArray): Int {
+        if(ratings.size == 1) return 1
+        var sum = 0
+        var counterArr = IntArray(ratings.size){1}
+
+        for(i in ratings.indices){
+            if(i > 0 && ratings[i]>ratings[i-1]){
+                counterArr[i] = counterArr[i-1]+1
+            }
+        }
+
+        for(i in ratings.lastIndex-1 downTo 0){
+            if(ratings[i]>ratings[i+1] && counterArr[i]<= counterArr[i+1]){
+                counterArr[i] = counterArr[i+1]+1
+            }
+        }
+
+        for(i in counterArr){
+            sum += i
+        }
         return sum
     }
 

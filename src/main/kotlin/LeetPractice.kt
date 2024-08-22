@@ -1,3 +1,4 @@
+import Dfs.medium.CourseSchedule2
 import Dfs.medium.LetterCombinations
 import Maths.Easy.AddBinary
 import Maths.Hard.BasicCalculator
@@ -11,9 +12,9 @@ import kotlin.math.pow
 
 fun main() {
 
-    val cal = LetterCombinations()
-    val res = cal.letterCombinations("23")
+    val cal = Candy()
+    var rati = intArrayOf(1, 0, 2)
 
-    println(res)
+    println(cal.candy(rati))
 }
 
